@@ -1,5 +1,6 @@
 require 'rspec'
 
+#Mismo ejemplo que versionado_define_method, pero usando class_eval y def's
 
 def versionar(clase)
   clase.class_eval do
@@ -16,7 +17,7 @@ end
 
 describe 'Un versionador con eval' do
 
-  it 'Una clase no versionada no entiende version ni versionar' do
+  it 'no versionada a las clases no versionadas' do
     class A
     end
     a = A.new
@@ -24,7 +25,7 @@ describe 'Un versionador con eval' do
     expect { a.versionar }.to raise_error Exception
   end
 
-  it 'should respond to version methods' do
+  it 'le agrega versionar y version a las clases versionadas' do
     class B
     end
     b = B.new

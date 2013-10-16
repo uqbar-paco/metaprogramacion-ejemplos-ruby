@@ -1,6 +1,5 @@
 require 'rspec'
 
-
 def versionar(clase)
   clase.send :define_method, :versionar do
     @version = self.version + 1
@@ -11,9 +10,9 @@ def versionar(clase)
   end
 end
 
-describe 'My context' do
+describe 'Un versionador con define_method' do
 
-  it 'Una clase no versionada no entiende version ni versionar' do
+  it 'no versionada a las clases no versionadas' do
     class A
     end
     a = A.new
@@ -21,10 +20,11 @@ describe 'My context' do
     expect { a.versionar }.to raise_error Exception
   end
 
-  it 'should respond to version methods' do
+  it 'le agrega versionar y version a las clases versionadas' do
     class B
     end
     b = B.new
+
     versionar(B)
 
     b.version.should == 0
